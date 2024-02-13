@@ -1,0 +1,8 @@
+name: SkillBuilder
+version: '1.0-SNAPSHOT'
+main: nameerror.skillbuilder.SkillBuilder
+api-version: 1.17
+description: Allow you to infinitely customize skill and debuff
+commands:
+  skillbuilder:
+    description: Command for skilllbuilder
