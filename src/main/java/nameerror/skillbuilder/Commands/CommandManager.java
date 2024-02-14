@@ -20,6 +20,7 @@ public class CommandManager implements TabExecutor {
         subCommands.put("launch", new LaunchCommand());
         subCommands.put("launch_as", new LaunchAsCommand());
         subCommands.put("test", new TestCommand());
+        subCommands.put("tool", new ToolCommand());
     }
 
     @Override
