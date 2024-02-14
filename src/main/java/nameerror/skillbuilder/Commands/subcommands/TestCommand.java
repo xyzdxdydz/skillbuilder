@@ -2,13 +2,8 @@ package nameerror.skillbuilder.Commands.subcommands;
 
 import nameerror.skillbuilder.Commands.CommandManager;
 import nameerror.skillbuilder.Commands.SubCommandManager;
-import nameerror.skillbuilder.Fundamental.SkillManagement.SkillManager;
 import nameerror.skillbuilder.Testing.Test;
-import nameerror.skillbuilder.Testing.TestModule.TrackedMatterTest;
-import nameerror.skillbuilder.Testing.TestModule.VectorManagerTest;
-import nameerror.skillbuilder.Testing.TestModuleTemplate;
 import nameerror.skillbuilder.Verbose;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -28,7 +23,7 @@ public class TestCommand extends SubCommandManager {
 
     @Override
     public String getSyntax() {
-        return "/skillbuilder test <module>";
+        return "/skillbuilder test <module> <test case>";
     }
 
     @Override
@@ -49,7 +44,7 @@ public class TestCommand extends SubCommandManager {
     @Override
     public void perform(CommandSender sender, String[] args) {
         if (args.length == 3) {
-            if (args[1].equals("")) {
+            if (args[2].equals("")) {
                 sender.sendMessage(Verbose.invalidCommandSyntax());
                 return;
             }
