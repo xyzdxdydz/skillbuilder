@@ -27,7 +27,7 @@ public class VectorManager {
         return location;
     }
 
-    // TODO; fix bug and refactor
+    // TODO; refactor
 
     public static Vector getLeftVectorByReference(Location loc) {
         float yaw = loc.getYaw() - 90f;
