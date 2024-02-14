@@ -1,5 +1,6 @@
 package nameerror.skillbuilder.Testing;
 
+import nameerror.skillbuilder.Testing.TestModule.FloatingBlockTest;
 import nameerror.skillbuilder.Testing.TestModule.TrackedMatterTest;
 import nameerror.skillbuilder.Testing.TestModule.VectorManagerTest;
 
@@ -12,6 +13,7 @@ public class Test {
     public static void registerTest() {
         testTable.put("movement_tracking", new TrackedMatterTest());
         testTable.put("vector_mgmt", new VectorManagerTest());
+        testTable.put("floating_block", new FloatingBlockTest());
     }
 
     public static ArrayList<String> getTestModules() {
