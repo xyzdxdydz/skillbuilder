@@ -4,9 +4,9 @@ import nameerror.skillbuilder.Math.Shape.Sphere;
 import nameerror.skillbuilder.SkillBuilder;
 import nameerror.skillbuilder.Testing.TestModuleTemplate;
 import nameerror.skillbuilder.Utils.AccelerationField;
-import nameerror.skillbuilder.Utils.MovementTrackingHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +23,7 @@ public class AccerelationFieldTest extends TestModuleTemplate {
     private void initTest() {
         // Add function references to the map
         functionMap.put("convergent", this::convergentTest); // passed
+        functionMap.put("divergent", this::divergentTest);
     }
 
     public ArrayList<String> getTestCases() {
@@ -32,16 +33,38 @@ public class AccerelationFieldTest extends TestModuleTemplate {
     public void test(String testCaseName, Player requester) { functionMap.get(testCaseName).apply(requester); }
 
     public Integer convergentTest(Player player) {
-        Double x_init = player.getLocation().getX();
-        Double y_init = player.getLocation().getY();
-        Double z_init = player.getLocation().getZ();
+        Vector init_loc = player.getLocation().toVector();
+
         AccelerationField field = new AccelerationField(
-                x -> (x_init - x),
-                y -> (y_init - y),
-                z -> (z_init - z)
-        );
+//                law of universal gravitation
+                (Vector posVector) -> {
+                    Vector dff = init_loc.clone().subtract(posVector);
+                    if (dff.isZero()) {
+                        return new Vector(0, 0, 0);
+                    }
+                    return dff.normalize().multiply(posVector.distanceSquared(init_loc) > 4.0 ?
+                            100.0 / posVector.distanceSquared(init_loc) : 0);
+                });
         Sphere sphere = new Sphere(player.getLocation(), 20);
         Bukkit.getServer().getScheduler().runTaskTimer(SkillBuilder.getPlugin(), () -> field.apply(sphere), 0, 1);
+        return 0;
+    }
+
+    public Integer divergentTest(Player player) {
+        Vector init_loc = player.getLocation().toVector();
+
+        AccelerationField field = new AccelerationField(
+//                law of universal gravitation
+                (Vector posVector) -> {
+                    Vector dff = posVector.clone().subtract(init_loc);
+                    if (dff.isZero()) {
+                        return new Vector(0, 0, 0);
+                    }
+                    return dff.normalize().multiply(posVector.distanceSquared(init_loc) > 1.0 ?
+                            500.0 / posVector.distance(init_loc) : 0);
+                });
+        Sphere sphere = new Sphere(player.getLocation(), 20);
+        field.apply(sphere);
         return 0;
     }
 }
