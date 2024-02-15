@@ -59,7 +59,7 @@ public class ToolCommand extends SubCommandManager {
         List<String> result = new ArrayList<>();
 
         if (args.length == 2) {
-            result.add("allay_grid");
+            result.add("creeper_grid");
         }
 
         return result;

@@ -1,7 +1,7 @@
 package nameerror.skillbuilder.Utils.DevTools;
 
 import org.bukkit.Location;
-import org.bukkit.entity.Allay;
+import org.bukkit.entity.Creeper;
 import org.bukkit.util.Vector;
 
 public class EntityGrid {
@@ -14,10 +14,10 @@ public class EntityGrid {
             for (int y=-size; y<=size; y+=stride) {
                 for (int z=-size; z<=size; z+=stride) {
                     Location spawnLocation = center.clone().add(new Vector(x, y, z));
-                    Allay allay = center.getWorld().spawn(spawnLocation, Allay.class);
+                    Creeper creeper = center.getWorld().spawn(spawnLocation, Creeper.class);
 
-//                    allay.setGravity(false);
-                    allay.setAI(false);
+                    creeper.setGravity(false); // velocity can apply
+//                    allay.setAI(false);
 //                    allay.setCollidable(false);
                 }
             }
