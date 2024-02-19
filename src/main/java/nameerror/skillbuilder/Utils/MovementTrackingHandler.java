@@ -1,5 +1,6 @@
 package nameerror.skillbuilder.Utils;
 
+import nameerror.skillbuilder.Fundamental.Matter;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 
@@ -37,7 +38,5 @@ public class MovementTrackingHandler {
         matter.update(location);
     }
 
-    public static TrackedMatter attachTracker(Entity entity) {
-        return new TrackedMatter(entity);
-    }
+    public static TrackedMatter attachTracker(Matter matter) { return new TrackedMatter(matter); }
 }

@@ -1,5 +1,6 @@
 package nameerror.skillbuilder.Testing.TestModule;
 
+import nameerror.skillbuilder.Fundamental.LegacyEntity;
 import nameerror.skillbuilder.Testing.TestModuleTemplate;
 import nameerror.skillbuilder.Utils.MovementTrackingHandler;
 import nameerror.skillbuilder.Utils.TrackedMatter;
@@ -41,7 +42,7 @@ public class TrackedMatterTest extends TestModuleTemplate {
         Creeper creeper = world.spawn(spawnLocation, Creeper.class);
         Llama m2 = world.spawn(spawnLocation, Llama.class);
         creeper.setPowered(true);
-        MovementTrackingHandler.register(creeper, MovementTrackingHandler.attachTracker((m2)));
+        MovementTrackingHandler.register(creeper, MovementTrackingHandler.attachTracker(new LegacyEntity(m2)));
 
         return 1;
     }
@@ -54,7 +55,7 @@ public class TrackedMatterTest extends TestModuleTemplate {
         Llama m2 = world.spawn(spawnLocation, Llama.class);
         creeper.setPowered(true);
 
-        TrackedMatter tm = MovementTrackingHandler.attachTracker((m2));
+        TrackedMatter tm = MovementTrackingHandler.attachTracker(new LegacyEntity(m2));
         tm.setAxisMode("global");
         tm.setLocationOffset(new Vector(3, 3, 3));
         MovementTrackingHandler.register(creeper, tm);
@@ -69,7 +70,7 @@ public class TrackedMatterTest extends TestModuleTemplate {
         Allay allay = world.spawn(spawnLocation, Allay.class);
         Creeper creeper = world.spawn(spawnLocation, Creeper.class);
 
-        TrackedMatter tm = MovementTrackingHandler.attachTracker((creeper));
+        TrackedMatter tm = MovementTrackingHandler.attachTracker(new LegacyEntity(creeper));
         tm.setAxisMode("local");
         tm.setLocationOffset(new Vector(3, 1, 3)); // left, above, front
         MovementTrackingHandler.register(allay, tm);
@@ -78,7 +79,7 @@ public class TrackedMatterTest extends TestModuleTemplate {
     }
 
     public static void createSlave(LivingEntity master, LivingEntity slave, Vector dirRefVector) {
-        TrackedMatter tm = MovementTrackingHandler.attachTracker(slave);
+        TrackedMatter tm = MovementTrackingHandler.attachTracker(new LegacyEntity(slave));
         tm.setAxisMode("local");
         tm.setLocationOffset(dirRefVector); // left, above, front
         MovementTrackingHandler.register(master, tm);
