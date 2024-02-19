@@ -1,30 +1,47 @@
 package nameerror.skillbuilder.Utils;
 
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Field;
 import nameerror.skillbuilder.Math.SetSpace;
 import org.bukkit.Location;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.FallingBlock;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
 import java.util.function.Function;
 
-public class AccelerationField {
-    private final Function<Vector, Vector> F;
+public class AccelerationField extends Field {
 
-    public AccelerationField(Function<Vector, Vector> vecFunc) {
-        F = vecFunc;
+    private Function<Vector, Vector> F;
+
+    public AccelerationField(SetSpace setSpace) {
+        super(setSpace.getLocation(), setSpace);
     }
 
-    public void apply(SetSpace setSpace) {
-        ArrayList<Entity> entities = setSpace.findEntities(false);
+    public void setFunction(Function<Vector, Vector> posFunction) {
+        this.F = posFunction;
+    }
 
-        for (Entity e: entities) {
-            Location location = e.getLocation().clone();
-            Vector velocity = e.getVelocity();
-            Vector delta = F.apply(location.toVector());
-            velocity.add(delta.multiply(0.04f));
+    @Override
+    public boolean teleport(Location location) {
+        super.teleport(location);
+        super.setSpace.setLocation(location);
+        return true;
+    }
 
-            e.setVelocity(velocity);
-        }
+    @Override
+    public void applyToEntity(Entity entity) {
+        Location location = entity.getLocation().clone();
+        Vector velocity = entity.getVelocity();
+        Vector delta = F.apply(location.toVector());
+        velocity.add(delta.multiply(0.04f));
+
+        entity.setVelocity(velocity);
+    }
+
+    @Override
+    public void applyToBlock(Block block) {
+        FallingBlock fb = FloatingBlock.makeFloatBlock(block, true);
+        fb.setGravity(false);
     }
 }
