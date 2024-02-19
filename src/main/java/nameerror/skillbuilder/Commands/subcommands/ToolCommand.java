@@ -48,7 +48,7 @@ public class ToolCommand extends SubCommandManager {
                 return;
             }
 
-            if (args[1].equals("allay_grid")) {
+            if (args[1].equals("creeper_grid")) {
                 EntityGrid.makeGrid(((Player) sender).getLocation(), Integer.parseInt(args[2]), Integer.parseInt(args[3]));
             }
         }
