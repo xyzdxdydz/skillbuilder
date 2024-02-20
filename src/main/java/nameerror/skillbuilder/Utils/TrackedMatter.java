@@ -17,7 +17,7 @@ public class TrackedMatter {
     private String axisMode = "global";
     private boolean useLocOffset = false;
     private boolean followRotation = false;
-    private boolean lockDirection = false;
+    private boolean forceDirection = false;
 
     private boolean enable = true;
     private boolean isExpired = false;
@@ -39,36 +39,37 @@ public class TrackedMatter {
         this.axisMode = mode;
     }
 
-    private Location getNewLocation(Location location) {
-        location = location.clone();
-        float prev_pitch = location.getPitch();
-        float prev_yaw = location.getYaw();
+    private Location getNewLocation(Location slaveLocation, Location masterLocation) {
+        Location newSlaveLocation = masterLocation.clone();
+        float prev_pitch = slaveLocation.getPitch();
+        float prev_yaw = slaveLocation.getYaw();
 
         switch (this.axisMode) {
             case ("local"):
-                Vector front_basis = location.getDirection();
-                Vector above_basis = VectorManager.getAboveVectorByReference(location);
-                Vector left_basis  = VectorManager.getLeftVectorByReference(location);
+                Vector front_basis = newSlaveLocation.getDirection();
+                Vector above_basis = VectorManager.getAboveVectorByReference(newSlaveLocation);
+                Vector left_basis  = VectorManager.getLeftVectorByReference(newSlaveLocation);
 
                 Vector newOffset = new Vector(0,0,0);
                 newOffset.add( left_basis.multiply(locOffset.getX()));
                 newOffset.add(above_basis.multiply(locOffset.getY()));
                 newOffset.add(front_basis.multiply(locOffset.getZ()));
-                location.add(newOffset);
+                newSlaveLocation.add(newOffset);
                 break;
 
             case ("global"):
-                location.add(this.locOffset);
+                newSlaveLocation.add(this.locOffset);
                 break;
         }
 
-        if (!this.lockDirection) {
-            location.setYaw(prev_yaw);
-            location.setPitch(prev_yaw);
+        if (!this.forceDirection) {
+            newSlaveLocation.setPitch(prev_pitch);
+            newSlaveLocation.setYaw(prev_yaw);
         }
         // TODO; sight direction point to master's target;
         // TODO; add custom behavior (callback function based).
-        return location;
+
+        return newSlaveLocation;
     }
 
     public Matter getMatter() {
@@ -77,16 +78,15 @@ public class TrackedMatter {
 
     public void update(Location masterLocation) {
         if (this.enable) {
-            Location newLocation = getNewLocation(masterLocation);
+            Location newLocation = getNewLocation(matter.getLocation(), masterLocation);
 
             if (matter instanceof LegacyEntity) {
                 Entity entity = ((LegacyEntity) matter).getEntity();
                 entity.setVelocity(new Vector(0, 0, 0)); // prevent fall damage
-                entity.teleport(newLocation);
 
-            } else if (matter instanceof Field) {
-                matter.teleport(newLocation);
-            }
+            } else if (matter instanceof Field) { }
+
+            matter.teleport(newLocation);
         }
     }
 
