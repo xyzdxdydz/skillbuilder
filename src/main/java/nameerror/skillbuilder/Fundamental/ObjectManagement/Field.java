@@ -9,8 +9,8 @@ import org.bukkit.entity.Entity;
 import java.util.ArrayList;
 
 public abstract class Field extends Matter {
-    /*
-    Definition: and area of effect (AoE that take and actions overtime instead of activate only once
+    /**
+    Definition: and area of effect (AoE) that take and actions overtime instead of activate only once
     This is different from run AoE in SequenceRunner that they can handle Triggers and more unique properties.
     - Theoretically continuous in time (interpolating between time step)
     - Size & shape dynamic;
