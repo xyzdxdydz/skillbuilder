@@ -21,6 +21,30 @@ public class TrackedMatterTest extends TestModuleTemplate {
         initTest();
     }
 
+    /**
+     * Expected behavior
+     * The complete version of each feature must get 'passed' on both 'basic' and 'advanced'
+     * basic:
+     *      Basic: // passed
+     *          1. Llama will be on the same location as Creeper.
+     *      Advanced: // passed
+     *          1. Llama can look around
+     * loc_offset:
+     *      Basic: // passed
+     *          1. Llama will be on location that have global offset with Creeper.
+     *      Advanced: // passed
+     *          1. Llama can look around
+     * follow_rotation:
+     *      Basic: // passed
+     *          1. Creeper will always on Allay's view with any references.
+     *      Advanced: // passed
+     *          1. Creeper can look around
+     * final_test:
+     *      Basic: // passed
+     *          1. Blaze will be aligned and always on Allay's view with any references.
+     *      Advanced: // passed
+     *          1. Blaze can look around
+     */
     private void initTest() {
         // Add function references to the map
         functionMap.put("basic", TrackedMatterTest::simpleMovementTracking); // passed

@@ -17,6 +17,40 @@ public class VectorManagerTest extends TestModuleTemplate {
         initTest();
     }
 
+    /**
+     * Expected behavior
+     * The complete version of each feature must get 'passed' on both 'basic' and 'advanced'
+     * left_reference:
+     *      Basic: // passed
+     *          1. Allay will be on 4 block away from your left of your view from your foot's location.
+     *      Advanced: // passed
+     *          - no additional information -
+     * right_reference:
+     *      Basic: // passed
+     *          1. Allay will be on 4 block away from your right of your view from your foot's location.
+     *      Advanced: // passed
+     *          - no additional information -
+     * above_reference:
+     *      Basic: // passed
+     *          1. Allay will be on 4 block above of your view from your foot's location.
+     *      Advanced: // passed
+     *          - no additional information -
+     * bottom_reference:
+     *      Basic: // passed
+     *          1. Allay will be on 4 block below of your view from your foot's location
+     *      Advanced: // passed
+     *          - no additional information -
+     * front_reference:
+     *      Basic: // passed
+     *          1.Allay will be on 4 block in front of your view from your foot's location
+     *      Advanced: // passed
+     *          - no additional information -
+     * back_reference:
+     *      Basic: // passed
+     *          1. Allay will be on 4 block on the back of your view from your foot's location
+     *      Advanced: // passed
+     *          - no additional information -
+     */
     private void initTest() {
         // Add function references to the map
         functionMap.put("left_reference", VectorManagerTest::LeftVectorReferenceTest); // passed

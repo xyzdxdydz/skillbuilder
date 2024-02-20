@@ -20,6 +20,21 @@ public class FloatingBlockTest extends TestModuleTemplate {
         initTest();
     }
 
+    /**
+     * Expected behavior
+     * The complete version of each feature must get 'passed' on both 'basic' and 'advanced'
+     * basic: // passed
+     *      Basic: // passed
+     *          1. falling block 5x5 around player should turn to FallingBlock and fly up to the air
+     *      Advanced: // passed
+     *          - no additional information -
+     * basic_with_block_data: // passed
+     *      Basic: // passed
+     *          1. falling block 5x5 around player should turn to FallingBlock and fly up to the air
+     *          2. capture data of orientation of each block
+     *      Advanced: // passed
+     *          - no additional information -
+     */
     private void initTest() {
         // Add function references to the map
         functionMap.put("basic", this::floatingBlockTest); // passed
