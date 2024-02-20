@@ -3,8 +3,10 @@ package nameerror.skillbuilder;
 import nameerror.skillbuilder.Commands.CommandManager;
 import nameerror.skillbuilder.Configuration.PluginConfiguration;
 import nameerror.skillbuilder.EventListener.SkillListener;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.FieldManager;
 import nameerror.skillbuilder.Testing.Test;
 import nameerror.skillbuilder.Utils.MovementTrackingHandler;
+import nameerror.skillbuilder.Utils.Mugen;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -89,10 +91,12 @@ public final class SkillBuilder extends JavaPlugin {
     private void registerEvent() {
         PluginManager pm = getServer().getPluginManager();
         Bukkit.getServer().getPluginManager().registerEvents(new SkillListener(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new Mugen(), this);
     }
 
     private void registerHandler() {
         getServer().getScheduler().runTaskTimer(this, MovementTrackingHandler::update, 0, 1);
+        getServer().getScheduler().runTaskTimer(this, FieldManager::update, 0, 1);
     }
 
     public PluginConfiguration getConfigDatabase(String name) {
