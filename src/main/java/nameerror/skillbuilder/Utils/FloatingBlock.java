@@ -10,19 +10,17 @@ import org.bukkit.entity.FallingBlock;
 public class FloatingBlock {
 
     public static FallingBlock makeFloatBlock(Block block, boolean withBlockData) {
-        World world = block.getWorld();
-        Location location = block.getLocation();
-        BlockData blockData;
+        if (!block.getType().equals(Material.AIR)) {
+            World world = block.getWorld();
+            Location location = block.getLocation();
+            BlockData blockData = withBlockData ? block.getBlockData() : block.getType().createBlockData();
 
-        if (withBlockData) {
-            blockData = block.getBlockData();
+            FallingBlock fallingBlock = world.spawnFallingBlock(location, blockData);
+            block.setType(Material.AIR);
 
-        } else {
-            blockData = block.getType().createBlockData();
+            return fallingBlock;
         }
 
-        FallingBlock sandEntity = world.spawnFallingBlock(location, blockData);
-        block.setType(Material.AIR);
-        return sandEntity;
+        return null;
     }
 }
