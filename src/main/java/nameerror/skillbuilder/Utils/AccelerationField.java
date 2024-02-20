@@ -42,6 +42,6 @@ public class AccelerationField extends Field {
     @Override
     public void applyToBlock(Block block) {
         FallingBlock fb = FloatingBlock.makeFloatBlock(block, true);
-        fb.setGravity(false);
+//            fb.setGravity(false);
     }
 }
