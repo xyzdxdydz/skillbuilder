@@ -1,6 +1,7 @@
 package nameerror.skillbuilder.Commands.subcommands;
 
 import nameerror.skillbuilder.Commands.SubCommandManager;
+import nameerror.skillbuilder.Fundamental.MetaManager;
 import nameerror.skillbuilder.Utils.DevTools.EntityGrid;
 import nameerror.skillbuilder.Verbose;
 import org.bukkit.command.CommandSender;
@@ -50,6 +51,13 @@ public class ToolCommand extends SubCommandManager {
 
             if (args[1].equals("creeper_grid")) {
                 EntityGrid.makeGrid(((Player) sender).getLocation(), Integer.parseInt(args[2]), Integer.parseInt(args[3]));
+                sender.sendMessage("Tool been has run");
+
+            } else if (args[1].equals("manager")) {
+                String result = MetaManager.op(args[3], args[2]);
+
+                sender.sendMessage("Tool been has run.");
+                sender.sendMessage("Status: " + result);
             }
         }
     }
@@ -60,6 +68,16 @@ public class ToolCommand extends SubCommandManager {
 
         if (args.length == 2) {
             result.add("creeper_grid");
+            result.add("manager");
+
+        } else if (args.length == 3) {
+            if (args[1].equals("manager")) {
+                result = MetaManager.getManagers();
+            }
+        } else if (args.length == 4) {
+            if (args[1].equals("manager")) {
+                result.add("reset");
+            }
         }
 
         return result;
