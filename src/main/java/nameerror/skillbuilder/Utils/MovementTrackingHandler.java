@@ -23,6 +23,10 @@ public class MovementTrackingHandler {
         trackMap.get(master).remove(slave);
     }
 
+    public static void clear() {
+        trackMap.clear();
+    }
+
     public static Runnable update() {
         for (HashMap.Entry<Entity, Set<TrackedMatter>> entry : trackMap.entrySet()) {
             Location parentLoc = entry.getKey().getLocation();
