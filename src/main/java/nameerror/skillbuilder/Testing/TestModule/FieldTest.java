@@ -1,10 +1,9 @@
 package nameerror.skillbuilder.Testing.TestModule;
 
+import nameerror.skillbuilder.Fundamental.ObjectManagement.FieldManager;
 import nameerror.skillbuilder.Math.Shape.Sphere;
-import nameerror.skillbuilder.SkillBuilder;
 import nameerror.skillbuilder.Testing.TestModuleTemplate;
 import nameerror.skillbuilder.Utils.*;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
@@ -82,7 +81,7 @@ public class FieldTest extends TestModuleTemplate {
         });
         field.setIgnoreOwner(true);
 
-        Bukkit.getServer().getScheduler().runTaskTimer(SkillBuilder.getPlugin(), field::step, 0, 1);
+        FieldManager.register(field);
         return 0;
     }
 
@@ -106,7 +105,7 @@ public class FieldTest extends TestModuleTemplate {
     }
 
     public Integer maximumOutputBlue(Player player) {
-        Sphere sphere = new Sphere(player.getLocation(), 5);
+        Sphere sphere = new Sphere(player.getLocation(), 10);
         AccelerationField field = new AccelerationField(sphere);
         field.setOwner(player);
         field.setApplyToEntities(true);
@@ -122,10 +121,10 @@ public class FieldTest extends TestModuleTemplate {
         field.setIgnoreOwner(true);
         TrackedMatter tm = MovementTrackingHandler.attachTracker(field);
         tm.setAxisMode("local");
-        tm.setLocationOffset(new Vector(0, 0, 10)); // left, above, front
+        tm.setLocationOffset(new Vector(0, 0, 20)); // left, above, front
         MovementTrackingHandler.register(player, tm);
 
-        Sphere sphere2 = new Sphere(player.getLocation(), 2);
+        Sphere sphere2 = new Sphere(player.getLocation(), 4);
         FallingBlockNullifierField nullifier = new FallingBlockNullifierField(sphere2);
         nullifier.setOwner(player);
         nullifier.setApplyToEntities(true);
@@ -133,11 +132,10 @@ public class FieldTest extends TestModuleTemplate {
         nullifier.setIgnoreOwner(true);
         TrackedMatter tm2 = MovementTrackingHandler.attachTracker(nullifier);
         tm2.setAxisMode("local");
-        tm2.setLocationOffset(new Vector(0, 0, 10)); // left, above, front
+        tm2.setLocationOffset(new Vector(0, 0, 20)); // left, above, front
         MovementTrackingHandler.register(player, tm2);
 
-        Bukkit.getServer().getScheduler().runTaskTimer(SkillBuilder.getPlugin(), () -> {field.step(); nullifier.step();}, 0, 1);
-
+        FieldManager.register(field);
         return 0;
     }
 
@@ -152,8 +150,7 @@ public class FieldTest extends TestModuleTemplate {
         TrackedMatter tm = MovementTrackingHandler.attachTracker(field);
         MovementTrackingHandler.register(player, tm);
 
-        Bukkit.getServer().getScheduler().runTaskTimer(SkillBuilder.getPlugin(), field::step, 0, 1);
-
+        FieldManager.register(field);
         return 0;
     }
 }
