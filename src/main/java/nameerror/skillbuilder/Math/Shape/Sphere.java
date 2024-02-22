@@ -9,6 +9,7 @@ import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Sphere extends SetSpace implements Shape3D, Shape {
@@ -69,6 +70,59 @@ public class Sphere extends SetSpace implements Shape3D, Shape {
 
         return blockResult;
     }
+
+    @Override
+    public ArrayList<Block> getBlockOnSurface() {
+        ArrayList<Block> result = new ArrayList<>();
+        Set<Vector> resHistory = new HashSet<>();
+
+        double lengthStep = 0.35;
+        double delta = lengthStep/radius;
+
+        // re align was important
+        Location center = this.getLocation().getBlock().getLocation().clone().add(new Vector(0.5, 0.5, 0.5));
+        for (double alpha = 0; alpha <= Math.PI; alpha += delta) {
+            double y = Math.cos(alpha) * radius;
+            double r_y = Math.sin(alpha) * radius;
+
+            for (double theta = 0; theta <= Math.PI * 2; theta += delta) {
+                double x = Math.cos(theta) * r_y;
+                double z = Math.sin(theta) * r_y;
+
+                Location blockLocation = center.add(x, y, z);
+                Vector alignedBlockLoc = blockLocation.getBlock().getLocation().toVector();
+                if (!resHistory.contains(alignedBlockLoc)) {
+                    resHistory.add(alignedBlockLoc);
+                    result.add(blockLocation.getBlock());
+                }
+                center.subtract(x, y, z);
+            }
+        }
+
+        return result;
+    }
+
+// another version of making hsphere
+//        Vector rotationAxis = new Vector(0, 1, 0);
+//
+//        for (double alpha=0; alpha <= Math.PI; alpha+=delta) {
+//            double y = radius * Math.cos(alpha);
+//            double circleRadius = Math.sqrt(radius*radius - y*y);
+//            Location center = this.getLocation().clone().add(0, y, 0).getBlock().getLocation();
+//            Location blockLocation = center.clone().add(circleRadius, 0, 0);
+//
+//            for (double theta=0; theta<=2*Math.PI; theta+=delta) {
+//                Vector alignedBlockLoc = blockLocation.getBlock().getLocation().toVector();
+//                if (!resHistory.contains(alignedBlockLoc)) {
+//                    resHistory.add(alignedBlockLoc);
+//                    result.add(blockLocation.getBlock());
+//                }
+//
+//                Vector dff = blockLocation.toVector().subtract(center.toVector());
+//                blockLocation = center.clone().add(
+//                        VectorManager.rotateDCWAboutVector(dff, rotationAxis, (float) Math.toDegrees(delta)));
+//            }
+//        }
 
     // make it to pair of T, location
 //    public ArrayList<Entity> itemInside(ArrayList<Location> locations) {
