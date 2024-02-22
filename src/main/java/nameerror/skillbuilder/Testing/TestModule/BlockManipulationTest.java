@@ -14,10 +14,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-public class BlockRestoreTest extends TestModuleTemplate {
+public class BlockManipulationTest extends TestModuleTemplate {
     private final Map<String, Function<Player, Integer>> functionMap = new HashMap<>();
 
-    public BlockRestoreTest() {
+    public BlockManipulationTest() {
         initTest();
     }
 
@@ -45,7 +45,8 @@ public class BlockRestoreTest extends TestModuleTemplate {
      */
     private void initTest() {
         // Add function references to the map
-        functionMap.put("basic", this::basic);
+        functionMap.put("restorer_basic", this::restorerBasic);
+        functionMap.put("place_sphere", this::placeSphereBlock);
     }
 
     public ArrayList<String> getTestCases() {
@@ -54,18 +55,33 @@ public class BlockRestoreTest extends TestModuleTemplate {
 
     public void test(String testCaseName, Player requester) { functionMap.get(testCaseName).apply(requester); }
 
-    private int basic(Player player) {
+    private void restore(Player sender, BlockRestorer blockRestorer, long tickDelay) {
+        sender.sendMessage("all blocks will be restored in " + tickDelay/20.0 + " seconds.");
+        Bukkit.getServer().getScheduler().runTaskLater(SkillBuilder.getPlugin(), () -> {
+            sender.sendMessage("All blocks has been restored.");
+            blockRestorer.restoreAll();
+        }, tickDelay);
+    }
+
+    private int restorerBasic(Player player) {
         Sphere sphere = new Sphere(player.getLocation(), 10);
         ArrayList<Block> nearByBlocks = sphere.findBlocks(false);
         BlockRestorer blockRestore = new BlockRestorer(player.getWorld());
         blockRestore.add(nearByBlocks);
         nearByBlocks.forEach(block -> block.setType(Material.AIR));
 
-        player.sendMessage("all blocks will be restored in 10 seconds.");
-        Bukkit.getServer().getScheduler().runTaskLater(SkillBuilder.getPlugin(), () -> {
-            player.sendMessage("All blocks has been restored.");
-            blockRestore.restoreAll();
-        }, 20 * 10);
-        return 1;
+        restore(player, blockRestore, 20 * 10);
+        return 0;
+    }
+
+    private int placeSphereBlock(Player player) {
+        Sphere sphere = new Sphere(player.getLocation(), 10);
+        ArrayList<Block> surfaceBlocks = sphere.getBlockOnSurface();
+        BlockRestorer blockRestore = new BlockRestorer(player.getWorld());
+        blockRestore.add(surfaceBlocks);
+
+        surfaceBlocks.forEach(block -> block.setType(Material.GREEN_STAINED_GLASS));
+        restore(player, blockRestore, 20 * 60);
+        return 0;
     }
 }
