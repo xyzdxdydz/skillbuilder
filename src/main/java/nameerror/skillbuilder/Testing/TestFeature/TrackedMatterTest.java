@@ -1,7 +1,7 @@
-package nameerror.skillbuilder.Testing.TestModule;
+package nameerror.skillbuilder.Testing.TestFeature;
 
 import nameerror.skillbuilder.Fundamental.LegacyEntity;
-import nameerror.skillbuilder.Testing.TestModuleTemplate;
+import nameerror.skillbuilder.Testing.TestModule;
 import nameerror.skillbuilder.Utils.MovementTrackingHandler;
 import nameerror.skillbuilder.Utils.TrackedMatter;
 import org.bukkit.Location;
@@ -9,13 +9,7 @@ import org.bukkit.World;
 import org.bukkit.entity.*;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-
-public class TrackedMatterTest extends TestModuleTemplate {
-    private final Map<String, Function<Player, Integer>> functionMap = new HashMap<>();
+public class TrackedMatterTest extends TestModule {
 
     public TrackedMatterTest() {
         initTest();
@@ -47,19 +41,13 @@ public class TrackedMatterTest extends TestModuleTemplate {
      */
     private void initTest() {
         // Add function references to the map
-        functionMap.put("basic", TrackedMatterTest::simpleMovementTracking); // passed
-        functionMap.put("loc_offset", TrackedMatterTest::MovementTrackingWithLocOffset); // passed
-        functionMap.put("follow_rotation", TrackedMatterTest::MovementTrackingWithFollowRotation); // passed
-        functionMap.put("final_test", TrackedMatterTest::MovementTrackingFinalTest); // passed
+        this.addTestCase("basic", this::simpleMovementTracking); // passed
+        this.addTestCase("loc_offset", this::MovementTrackingWithLocOffset); // passed
+        this.addTestCase("follow_rotation", this::MovementTrackingWithFollowRotation); // passed
+        this.addTestCase("final_test", this::MovementTrackingFinalTest); // passed
     }
 
-    public ArrayList<String> getTestCases() {
-        return new ArrayList<>(functionMap.keySet());
-    }
-
-    public void test(String testCaseName, Player requester) { functionMap.get(testCaseName).apply(requester); }
-
-    private static Integer simpleMovementTracking(Player requester) {
+    private Integer simpleMovementTracking(Player requester) {
         Location spawnLocation = requester.getLocation().add(requester.getLocation().getDirection().multiply(5));
 
         World world = requester.getWorld();
@@ -71,7 +59,7 @@ public class TrackedMatterTest extends TestModuleTemplate {
         return 1;
     }
 
-    private static Integer MovementTrackingWithLocOffset(Player requester) {
+    private Integer MovementTrackingWithLocOffset(Player requester) {
         Location spawnLocation = requester.getLocation().add(requester.getLocation().getDirection().multiply(5));
 
         World world = requester.getWorld();
@@ -87,7 +75,7 @@ public class TrackedMatterTest extends TestModuleTemplate {
         return 1;
     }
 
-    private static Integer MovementTrackingWithFollowRotation(Player requester) {
+    private Integer MovementTrackingWithFollowRotation(Player requester) {
         Location spawnLocation = requester.getLocation().add(requester.getLocation().getDirection().multiply(5));
 
         World world = requester.getWorld();
@@ -109,7 +97,7 @@ public class TrackedMatterTest extends TestModuleTemplate {
         MovementTrackingHandler.register(master, tm);
     }
 
-    private static Integer MovementTrackingFinalTest(Player requester) {
+    private Integer MovementTrackingFinalTest(Player requester) {
         Location spawnLocation = requester.getLocation().add(requester.getLocation().getDirection().multiply(5));
 
         World world = requester.getWorld();
@@ -134,5 +122,4 @@ public class TrackedMatterTest extends TestModuleTemplate {
 
         return 1;
     }
-
 }

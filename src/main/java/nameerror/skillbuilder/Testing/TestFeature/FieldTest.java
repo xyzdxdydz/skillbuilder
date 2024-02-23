@@ -1,19 +1,13 @@
-package nameerror.skillbuilder.Testing.TestModule;
+package nameerror.skillbuilder.Testing.TestFeature;
 
 import nameerror.skillbuilder.Fundamental.ObjectManagement.FieldManager;
 import nameerror.skillbuilder.Math.Shape.Sphere;
-import nameerror.skillbuilder.Testing.TestModuleTemplate;
+import nameerror.skillbuilder.Testing.TestModule;
 import nameerror.skillbuilder.Utils.*;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-
-public class FieldTest extends TestModuleTemplate {
-    private final Map<String, Function<Player, Integer>> functionMap = new HashMap<>();
+public class FieldTest extends TestModule {
 
     public FieldTest() {
         initTest();
@@ -50,19 +44,13 @@ public class FieldTest extends TestModuleTemplate {
      */
     private void initTest() {
         // acceleration field
-        functionMap.put("convergent", this::convergentTest); // passed
-        functionMap.put("divergent", this::divergentTest); // passed
-        functionMap.put("maximum_output_blue", this::maximumOutputBlue); // passed
+        this.addTestCase("convergent", this::convergentTest); // passed
+        this.addTestCase("divergent", this::divergentTest); // passed
+        this.addTestCase("maximum_output_blue", this::maximumOutputBlue); // passed
 
         // velocity field
-        functionMap.put("velocity_field", this::velocityField); // passed
+        this.addTestCase("velocity_field", this::velocityField); // passed
     }
-
-    public ArrayList<String> getTestCases() {
-        return new ArrayList<>(functionMap.keySet());
-    }
-
-    public void test(String testCaseName, Player requester) { functionMap.get(testCaseName).apply(requester); }
 
     public Integer convergentTest(Player player) {
         Sphere sphere = new Sphere(player.getLocation(), 20);

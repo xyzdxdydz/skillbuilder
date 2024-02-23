@@ -1,8 +1,8 @@
-package nameerror.skillbuilder.Testing.TestModule;
+package nameerror.skillbuilder.Testing.TestFeature;
 
 import nameerror.skillbuilder.Math.Shape.Sphere;
 import nameerror.skillbuilder.SkillBuilder;
-import nameerror.skillbuilder.Testing.TestModuleTemplate;
+import nameerror.skillbuilder.Testing.TestModule;
 import nameerror.skillbuilder.Utils.BlockRestorer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -10,12 +10,8 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
 
-public class BlockManipulationTest extends TestModuleTemplate {
-    private final Map<String, Function<Player, Integer>> functionMap = new HashMap<>();
+public class BlockManipulationTest extends TestModule {
 
     public BlockManipulationTest() {
         initTest();
@@ -45,15 +41,9 @@ public class BlockManipulationTest extends TestModuleTemplate {
      */
     private void initTest() {
         // Add function references to the map
-        functionMap.put("restorer_basic", this::restorerBasic);
-        functionMap.put("place_sphere", this::placeSphereBlock);
+        this.addTestCase("restorer_basic", this::restorerBasic);
+        this.addTestCase("place_sphere", this::placeSphereBlock);
     }
-
-    public ArrayList<String> getTestCases() {
-        return new ArrayList<>(functionMap.keySet());
-    }
-
-    public void test(String testCaseName, Player requester) { functionMap.get(testCaseName).apply(requester); }
 
     private void restore(Player sender, BlockRestorer blockRestorer, long tickDelay) {
         sender.sendMessage("all blocks will be restored in " + tickDelay/20.0 + " seconds.");

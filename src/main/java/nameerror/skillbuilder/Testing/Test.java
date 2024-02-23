@@ -1,11 +1,14 @@
 package nameerror.skillbuilder.Testing;
 
-import nameerror.skillbuilder.Testing.TestModule.*;
+import nameerror.skillbuilder.Testing.TestFeature.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class Test {
-    private static Map<String, TestModuleTemplate> testTable = new HashMap<>();
+    private static Map<String, TestModule> testTable = new HashMap<>();
 
     public static void registerTest() {
         testTable.put("movement_tracking", new TrackedMatterTest());
@@ -23,7 +26,7 @@ public class Test {
         return testTable.containsKey(name) ? testTable.get(name).getTestCases() : new ArrayList<>();
     }
 
-    public static TestModuleTemplate get(String name) {
+    public static TestModule get(String name) {
         return testTable.getOrDefault(name, null);
     }
 }
