@@ -15,6 +15,7 @@ public class Test {
         testTable.put("vector_mgmt", new VectorManagerTest());
         testTable.put("floating_block", new FloatingBlockTest());
         testTable.put("field", new FieldTest());
+        testTable.put("building", new BuildingTest());
         testTable.put("block_manipulate", new BlockManipulationTest());
     }
 
