@@ -17,6 +17,8 @@ public class Test {
         testTable.put("field", new FieldTest());
         testTable.put("building", new BuildingTest());
         testTable.put("block_manipulate", new BlockManipulationTest());
+        testTable.put("world_manipulate", new WorldManipulationTest());
+        testTable.put("domain", new DomainExpansionTest());
     }
 
     public static ArrayList<String> getTestModules() {
