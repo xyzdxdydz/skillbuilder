@@ -54,7 +54,7 @@ public class TrackedMatterTest extends TestModule {
         Creeper creeper = world.spawn(spawnLocation, Creeper.class);
         Llama m2 = world.spawn(spawnLocation, Llama.class);
         creeper.setPowered(true);
-        MovementTrackingHandler.register(creeper, MovementTrackingHandler.attachTracker(new LegacyEntity(m2)));
+        MovementTrackingHandler.register(creeper, MovementTrackingHandler.attachTracker(LegacyEntity.get(m2)));
 
         return 1;
     }
@@ -67,7 +67,7 @@ public class TrackedMatterTest extends TestModule {
         Llama m2 = world.spawn(spawnLocation, Llama.class);
         creeper.setPowered(true);
 
-        TrackedMatter tm = MovementTrackingHandler.attachTracker(new LegacyEntity(m2));
+        TrackedMatter tm = MovementTrackingHandler.attachTracker(LegacyEntity.get(m2));
         tm.setAxisMode("global");
         tm.setLocationOffset(new Vector(3, 3, 3));
         MovementTrackingHandler.register(creeper, tm);
@@ -82,7 +82,7 @@ public class TrackedMatterTest extends TestModule {
         Allay allay = world.spawn(spawnLocation, Allay.class);
         Creeper creeper = world.spawn(spawnLocation, Creeper.class);
 
-        TrackedMatter tm = MovementTrackingHandler.attachTracker(new LegacyEntity(creeper));
+        TrackedMatter tm = MovementTrackingHandler.attachTracker(LegacyEntity.get(creeper));
         tm.setAxisMode("local");
         tm.setLocationOffset(new Vector(3, 1, 3)); // left, above, front
         MovementTrackingHandler.register(allay, tm);
@@ -91,7 +91,7 @@ public class TrackedMatterTest extends TestModule {
     }
 
     public static void createSlave(LivingEntity master, LivingEntity slave, Vector dirRefVector) {
-        TrackedMatter tm = MovementTrackingHandler.attachTracker(new LegacyEntity(slave));
+        TrackedMatter tm = MovementTrackingHandler.attachTracker(LegacyEntity.get(slave));
         tm.setAxisMode("local");
         tm.setLocationOffset(dirRefVector); // left, above, front
         MovementTrackingHandler.register(master, tm);
