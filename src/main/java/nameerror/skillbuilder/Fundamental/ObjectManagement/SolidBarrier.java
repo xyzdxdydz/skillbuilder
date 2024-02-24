@@ -27,7 +27,6 @@ public class SolidBarrier extends Building {
     @Override
     public void build() {
         ArrayList<Block> surfaceBlocks = ((Shape3D) shape3D).getBlockOnSurface();
-        Bukkit.broadcastMessage(String.valueOf(surfaceBlocks.get(0)));
         getBlockRestorer().add(surfaceBlocks);
         surfaceBlocks.forEach(block -> block.setType(material));
     }
