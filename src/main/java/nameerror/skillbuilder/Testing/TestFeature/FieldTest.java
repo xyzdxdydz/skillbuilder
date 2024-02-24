@@ -1,6 +1,7 @@
 package nameerror.skillbuilder.Testing.TestFeature;
 
 import nameerror.skillbuilder.Fundamental.ObjectManagement.FieldManager;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.LegacyEntity;
 import nameerror.skillbuilder.Math.Shape.Sphere;
 import nameerror.skillbuilder.Testing.TestModule;
 import nameerror.skillbuilder.Utils.*;
@@ -110,7 +111,7 @@ public class FieldTest extends TestModule {
         TrackedMatter tm = MovementTrackingHandler.attachTracker(field);
         tm.setAxisMode("local");
         tm.setLocationOffset(new Vector(0, 0, 20)); // left, above, front
-        MovementTrackingHandler.register(player, tm);
+        MovementTrackingHandler.register(LegacyEntity.get(player), tm);
 
         Sphere sphere2 = new Sphere(player.getLocation(), 4);
         FallingBlockNullifierField nullifier = new FallingBlockNullifierField(sphere2);
@@ -121,7 +122,7 @@ public class FieldTest extends TestModule {
         TrackedMatter tm2 = MovementTrackingHandler.attachTracker(nullifier);
         tm2.setAxisMode("local");
         tm2.setLocationOffset(new Vector(0, 0, 20)); // left, above, front
-        MovementTrackingHandler.register(player, tm2);
+        MovementTrackingHandler.register(LegacyEntity.get(player), tm2);
 
         FieldManager.register(field);
         return 0;
@@ -136,7 +137,7 @@ public class FieldTest extends TestModule {
         field.setIgnoreOwner(true);
 
         TrackedMatter tm = MovementTrackingHandler.attachTracker(field);
-        MovementTrackingHandler.register(player, tm);
+        MovementTrackingHandler.register(LegacyEntity.get(player), tm);
 
         FieldManager.register(field);
         return 0;

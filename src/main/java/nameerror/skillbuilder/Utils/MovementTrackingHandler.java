@@ -9,9 +9,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class MovementTrackingHandler {
-    private static final HashMap<Entity, Set<TrackedMatter>> trackMap = new HashMap<>();
+    private static final HashMap<Matter, Set<TrackedMatter>> trackMap = new HashMap<>();
+    private static final HashMap<Matter, TrackedMatter> matterMap = new HashMap<>();
 
-    public static void register(Entity master, TrackedMatter slave) {
+    public static void register(Matter master, TrackedMatter slave) {
         if (!trackMap.containsKey(master)) {
             trackMap.put(master, new HashSet<>());
         }
@@ -28,7 +29,7 @@ public class MovementTrackingHandler {
     }
 
     public static Runnable update() {
-        for (HashMap.Entry<Entity, Set<TrackedMatter>> entry : trackMap.entrySet()) {
+        for (HashMap.Entry<Matter, Set<TrackedMatter>> entry : trackMap.entrySet()) {
             Location parentLoc = entry.getKey().getLocation();
 
             for (TrackedMatter tackedObject : entry.getValue()) {
@@ -42,5 +43,14 @@ public class MovementTrackingHandler {
         matter.update(location);
     }
 
-    public static TrackedMatter attachTracker(Matter matter) { return new TrackedMatter(matter); }
+    public static TrackedMatter attachTracker(Matter matter) {
+        if (matterMap.containsKey(matter)) {
+            return matterMap.get(matter);
+
+        } else {
+            TrackedMatter tm = new TrackedMatter(matter);
+            matterMap.put(matter, tm);
+            return tm;
+        }
+    }
 }

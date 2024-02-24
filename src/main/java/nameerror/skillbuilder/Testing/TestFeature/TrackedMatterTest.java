@@ -54,7 +54,7 @@ public class TrackedMatterTest extends TestModule {
         Creeper creeper = world.spawn(spawnLocation, Creeper.class);
         Llama m2 = world.spawn(spawnLocation, Llama.class);
         creeper.setPowered(true);
-        MovementTrackingHandler.register(creeper, MovementTrackingHandler.attachTracker(LegacyEntity.get(m2)));
+        MovementTrackingHandler.register(LegacyEntity.get(creeper), MovementTrackingHandler.attachTracker(LegacyEntity.get(m2)));
 
         return 1;
     }
@@ -70,7 +70,7 @@ public class TrackedMatterTest extends TestModule {
         TrackedMatter tm = MovementTrackingHandler.attachTracker(LegacyEntity.get(m2));
         tm.setAxisMode("global");
         tm.setLocationOffset(new Vector(3, 3, 3));
-        MovementTrackingHandler.register(creeper, tm);
+        MovementTrackingHandler.register(LegacyEntity.get(creeper), tm);
 
         return 1;
     }
@@ -85,7 +85,7 @@ public class TrackedMatterTest extends TestModule {
         TrackedMatter tm = MovementTrackingHandler.attachTracker(LegacyEntity.get(creeper));
         tm.setAxisMode("local");
         tm.setLocationOffset(new Vector(3, 1, 3)); // left, above, front
-        MovementTrackingHandler.register(allay, tm);
+        MovementTrackingHandler.register(LegacyEntity.get(allay), tm);
 
         return 1;
     }
@@ -94,7 +94,7 @@ public class TrackedMatterTest extends TestModule {
         TrackedMatter tm = MovementTrackingHandler.attachTracker(LegacyEntity.get(slave));
         tm.setAxisMode("local");
         tm.setLocationOffset(dirRefVector); // left, above, front
-        MovementTrackingHandler.register(master, tm);
+        MovementTrackingHandler.register(LegacyEntity.get(master), tm);
     }
 
     private Integer MovementTrackingFinalTest(Player requester) {
