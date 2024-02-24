@@ -1,5 +1,6 @@
-package nameerror.skillbuilder.Fundamental;
+package nameerror.skillbuilder.Fundamental.ObjectManagement;
 
+import nameerror.skillbuilder.Fundamental.Matter;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 

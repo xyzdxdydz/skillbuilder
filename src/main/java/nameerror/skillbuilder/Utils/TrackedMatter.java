@@ -1,6 +1,6 @@
 package nameerror.skillbuilder.Utils;
 
-import nameerror.skillbuilder.Fundamental.LegacyEntity;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.LegacyEntity;
 import nameerror.skillbuilder.Fundamental.Matter;
 import nameerror.skillbuilder.Fundamental.ObjectManagement.Field;
 import nameerror.skillbuilder.Math.VectorManager;
