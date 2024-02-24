@@ -51,6 +51,9 @@ public class FieldTest extends TestModule {
 
         // velocity field
         this.addTestCase("velocity_field", this::velocityField); // passed
+
+        // positional field
+        this.addTestCase("freeze_field", this::freezeField); // passed
     }
 
     public Integer convergentTest(Player player) {
@@ -138,6 +141,17 @@ public class FieldTest extends TestModule {
 
         TrackedMatter tm = MovementTrackingHandler.attachTracker(field);
         MovementTrackingHandler.register(LegacyEntity.get(player), tm);
+
+        FieldManager.register(field);
+        return 0;
+    }
+
+    public Integer freezeField(Player player) {
+        Sphere sphere = new Sphere(player.getLocation(), 10);
+        FreezePositionField field = new FreezePositionField(sphere);
+        field.setOwner(player);
+        field.setApplyToEntities(true);
+        field.setIgnoreOwner(true);
 
         FieldManager.register(field);
         return 0;
