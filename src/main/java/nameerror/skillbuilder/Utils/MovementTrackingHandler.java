@@ -2,7 +2,6 @@ package nameerror.skillbuilder.Utils;
 
 import nameerror.skillbuilder.Fundamental.Matter;
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,8 +19,12 @@ public class MovementTrackingHandler {
 
     }
 
-    public static void remove(Entity master, TrackedMatter slave) {
+    public static void remove(Matter master, TrackedMatter slave) {
         trackMap.get(master).remove(slave);
+    }
+
+    public static void remove(Matter master) {
+        trackMap.remove(master);
     }
 
     public static void clear() {
