@@ -7,6 +7,7 @@ import nameerror.skillbuilder.Fundamental.ObjectManagement.FieldManager;
 import nameerror.skillbuilder.Testing.Test;
 import nameerror.skillbuilder.Utils.MovementTrackingHandler;
 import nameerror.skillbuilder.Utils.Mugen;
+import nameerror.skillbuilder.Fundamental.StatusEffect.CrowControl.Snare;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -92,6 +93,7 @@ public final class SkillBuilder extends JavaPlugin {
         PluginManager pm = getServer().getPluginManager();
         Bukkit.getServer().getPluginManager().registerEvents(new SkillListener(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new Mugen(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new Snare(), this);
     }
 
     private void registerHandler() {
