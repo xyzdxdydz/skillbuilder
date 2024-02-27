@@ -10,7 +10,7 @@ public abstract class Matter {
     }
 
     public Location getLocation() {
-        return location;
+        return location.clone();
     }
 
     public boolean teleport(Location location) {
