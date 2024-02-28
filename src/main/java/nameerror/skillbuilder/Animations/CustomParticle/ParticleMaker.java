@@ -1,8 +1,9 @@
 package nameerror.skillbuilder.Animations.CustomParticle;
 
+import org.bukkit.Location;
 import org.bukkit.Particle;
 
-public class ParticlePackage implements Cloneable {
+public class ParticleMaker implements Cloneable {
     private final Particle particle;
     private final int count;
     private final float offsetX;
@@ -12,7 +13,7 @@ public class ParticlePackage implements Cloneable {
     private final Object data;
     private final boolean force;
 
-    public ParticlePackage(Particle particle, int count, float offsetX, float offsetY, float offsetZ, float extra, Object data, boolean force) {
+    public ParticleMaker(Particle particle, int count, float offsetX, float offsetY, float offsetZ, float extra, Object data, boolean force) {
         this.particle = particle;
         this.count = count;
         this.offsetX = offsetX;
@@ -30,12 +31,24 @@ public class ParticlePackage implements Cloneable {
     public float getOffsetZ() {return this.offsetZ;}
     public float getExtra() {return this.extra; }
     public Object getData() {return this.data; }
-    public boolean getForce() {return force; }
+    public boolean getForceDisplay() {return force; }
+
+    public void spawn(Location location) {
+        location.getWorld().spawnParticle(
+            particle,
+            location,
+            count,
+            offsetX, offsetY, offsetZ,
+            extra,
+            data,
+            force
+        );
+    }
 
     @Override
-    public ParticlePackage clone() {
+    public ParticleMaker clone() {
         try {
-            return (ParticlePackage) super.clone();
+            return (ParticleMaker) super.clone();
 
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();

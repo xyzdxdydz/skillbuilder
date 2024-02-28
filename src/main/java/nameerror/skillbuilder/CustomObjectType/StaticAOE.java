@@ -1,7 +1,7 @@
 package nameerror.skillbuilder.CustomObjectType;
 
 import nameerror.skillbuilder.Animations.CustomParticle.BasicShape;
-import nameerror.skillbuilder.Animations.CustomParticle.ParticlePackage;
+import nameerror.skillbuilder.Animations.CustomParticle.ParticleMaker;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -73,7 +73,7 @@ public class StaticAOE {
         }
 
         BasicShape ee = new BasicShape(start);
-        ParticlePackage particlePackage4 = new ParticlePackage(Particle.REDSTONE,1, 0f, 0f, 0f, 1,
+        ParticleMaker particlePackage4 = new ParticleMaker(Particle.REDSTONE,1, 0f, 0f, 0f, 1,
                 new Particle.DustOptions(Color.fromRGB(200, 147, 238), 10f), true);
         ee.setParticle(particlePackage4);
         ee.createHelicalConedCoil(start.clone().add(normalDirection.multiply(range)), Math.tan(Math.toRadians(angle)), 0.1, Math.random() * 359, true, 2);

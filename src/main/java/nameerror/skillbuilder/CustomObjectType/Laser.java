@@ -2,7 +2,7 @@ package nameerror.skillbuilder.CustomObjectType;
 
 import javafx.util.Pair;
 import nameerror.skillbuilder.Animations.CustomParticle.BasicShape;
-import nameerror.skillbuilder.Animations.CustomParticle.ParticlePackage;
+import nameerror.skillbuilder.Animations.CustomParticle.ParticleMaker;
 import nameerror.skillbuilder.Math.Shape.Cylinder;
 import nameerror.skillbuilder.SkillBuilder;
 import nameerror.skillbuilder.Fundamental.SkillManagement.TargetSelector.Search;
@@ -188,7 +188,7 @@ public class Laser {
         }
 
         BasicShape ee = new BasicShape(start);
-        ParticlePackage particlePackage4 = new ParticlePackage(Particle.REDSTONE,1, 0f, 0f, 0f, 1,
+        ParticleMaker particlePackage4 = new ParticleMaker(Particle.REDSTONE,1, 0f, 0f, 0f, 1,
                 new Particle.DustOptions(Color.fromRGB(200, 147, 238), 0.5f), true);
         ee.setParticle(particlePackage4);
         ee.createLine(start.clone().add(direction.clone().multiply(range)), 8);

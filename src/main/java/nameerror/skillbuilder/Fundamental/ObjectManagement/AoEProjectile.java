@@ -40,6 +40,11 @@ public class AoEProjectile extends SBProjectile {
         ArrayList<Entity> entities = setSpace.findEntities(false);
 
         blocks.forEach(block -> block.setType(Material.AIR));
-        entities.forEach(entity -> ((LivingEntity) entity).damage(10));
+        entities.forEach(entity -> {
+            if (entity instanceof LivingEntity) {
+                ((LivingEntity) entity).damage(10);
+                ((LivingEntity) entity).setNoDamageTicks(0);
+            }
+        });
     }
 }

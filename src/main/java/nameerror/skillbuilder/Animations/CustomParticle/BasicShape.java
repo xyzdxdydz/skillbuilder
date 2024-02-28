@@ -32,7 +32,7 @@ public class BasicShape {
 
     public void setLocation(Location location) {this.location = location;}
 
-    public void setParticle(ParticlePackage particlePackage) {
+    public void setParticle(ParticleMaker particlePackage) {
         this.particle = particlePackage.getParticle();
         this.count = particlePackage.getCount();
         this.offsetX = particlePackage.getOffsetX();
@@ -40,9 +40,10 @@ public class BasicShape {
         this.offsetZ = particlePackage.getOffsetZ();
         this.extra = particlePackage.getExtra();
         this.data = particlePackage.getData();
-        this.force = particlePackage.getForce();
+        this.force = particlePackage.getForceDisplay();
     }
 
+    @Deprecated
     public void createLine(Location destination, int samplePerBlock) {
         Vector direction = destination.clone().toVector().subtract(location.clone().toVector());
         if (!direction.equals(new Vector(0, 0, 0))) {
@@ -123,6 +124,7 @@ public class BasicShape {
         }
     }
 
+    @Deprecated
     public void createCircle(double size, int samplePerBlock) {
         Vector adderVector = VectorManager.getLeftVectorByReference(vectorAxis);
         if (adderVector.equals(new Vector(0,0,0))) {
