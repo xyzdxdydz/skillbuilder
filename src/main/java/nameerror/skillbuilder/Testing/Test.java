@@ -21,6 +21,7 @@ public class Test {
         testTable.put("domain", new DomainExpansionTest());
         testTable.put("status_effect", new StatusEffectTest());
         testTable.put("projectile", new ProjectileTest());
+        testTable.put("particle", new ParticleTest());
     }
 
     public static ArrayList<String> getTestModules() {
