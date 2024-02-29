@@ -2,6 +2,7 @@ package nameerror.skillbuilder;
 
 import nameerror.skillbuilder.Commands.CommandManager;
 import nameerror.skillbuilder.Configuration.PluginConfiguration;
+import nameerror.skillbuilder.EventListener.DisableParticleDamage;
 import nameerror.skillbuilder.EventListener.SkillListener;
 import nameerror.skillbuilder.Fundamental.ObjectManagement.FieldManager;
 import nameerror.skillbuilder.Testing.Test;
@@ -94,6 +95,7 @@ public final class SkillBuilder extends JavaPlugin {
         Bukkit.getServer().getPluginManager().registerEvents(new SkillListener(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new Mugen(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new Snare(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new DisableParticleDamage(), this);
     }
 
     private void registerHandler() {

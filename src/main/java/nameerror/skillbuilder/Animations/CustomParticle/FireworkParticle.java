@@ -1,8 +1,10 @@
 package nameerror.skillbuilder.Animations.CustomParticle;
 
+import nameerror.skillbuilder.SkillBuilder;
 import org.bukkit.*;
 import org.bukkit.entity.Firework;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import java.lang.reflect.Field;
 
@@ -26,7 +28,7 @@ public class FireworkParticle {
         final Firework fw = world.spawn(location, Firework.class);
         FireworkMeta meta = fw.getFireworkMeta();
         meta.addEffect(fwFx);
-
+        fw.setMetadata("particle", new FixedMetadataValue(SkillBuilder.getPlugin(), true));
         // this equivalent to
         // meta.setPower(10);
         Field power;
