@@ -5,6 +5,7 @@ import nameerror.skillbuilder.Configuration.PluginConfiguration;
 import nameerror.skillbuilder.EventListener.DisableParticleDamage;
 import nameerror.skillbuilder.EventListener.SkillListener;
 import nameerror.skillbuilder.Fundamental.ObjectManagement.FieldManager;
+import nameerror.skillbuilder.Fundamental.StatusEffect.StatusEffectManager;
 import nameerror.skillbuilder.Testing.Test;
 import nameerror.skillbuilder.Utils.MovementTrackingHandler;
 import nameerror.skillbuilder.Utils.Mugen;
@@ -101,6 +102,7 @@ public final class SkillBuilder extends JavaPlugin {
     private void registerHandler() {
         getServer().getScheduler().runTaskTimer(this, MovementTrackingHandler::update, 0, 1);
         getServer().getScheduler().runTaskTimer(this, FieldManager::update, 0, 1);
+        getServer().getScheduler().runTaskTimer(this, StatusEffectManager::update, 0, 1);
     }
 
     public PluginConfiguration getConfigDatabase(String name) {

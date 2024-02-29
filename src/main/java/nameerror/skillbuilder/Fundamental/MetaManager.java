@@ -9,9 +9,11 @@ public class MetaManager {
 
     public static ArrayList<String> managers = new ArrayList<>();
 
+    // TODO; implement garbage collector
     static {
         managers.add("field");
         managers.add("movement_tracking");
+        managers.add("status_effect");
     }
 
     public static ArrayList<String> getManagers() {
