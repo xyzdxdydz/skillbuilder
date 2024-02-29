@@ -1,9 +1,11 @@
 package nameerror.skillbuilder.Testing.TestFeature;
 
+import nameerror.skillbuilder.Animations.CustomParticle.FireworkParticle;
 import nameerror.skillbuilder.Animations.CustomParticle.ParticleDrawer;
 import nameerror.skillbuilder.Animations.CustomParticle.ParticleMaker;
 import nameerror.skillbuilder.Testing.TestModule;
 import org.bukkit.Color;
+import org.bukkit.FireworkEffect;
 import org.bukkit.Particle;
 import org.bukkit.Particle.DustTransition;
 import org.bukkit.entity.Player;
@@ -17,6 +19,7 @@ public class ParticleTest extends TestModule {
         this.addTestCase("display_dust_color_trans", this::displayDust);
         this.addTestCase("straight_line", this::straightLine);
         this.addTestCase("circle", this::circle);
+        this.addTestCase("firework", this::firework);
     }
 
     private Integer displayDust(Player player) {
@@ -64,6 +67,16 @@ public class ParticleTest extends TestModule {
                 false);
 
         ParticleDrawer.createCircle(player.getEyeLocation(), 10, pp, 1);
+        return 0;
+    }
+
+    private Integer firework(Player player) {
+        FireworkParticle fireworkParticle = new FireworkParticle(
+                FireworkEffect.Type.BURST,
+                Color.fromARGB(128,255,166,255),
+                false, false);
+
+        fireworkParticle.spawn(player.getEyeLocation().add(player.getLocation().getDirection().multiply(4)));
         return 0;
     }
 }
