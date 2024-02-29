@@ -22,6 +22,7 @@ public class Test {
         testTable.put("status_effect", new StatusEffectTest());
         testTable.put("projectile", new ProjectileTest());
         testTable.put("particle", new ParticleTest());
+        testTable.put("explosion", new ExplosionTest());
     }
 
     public static ArrayList<String> getTestModules() {
