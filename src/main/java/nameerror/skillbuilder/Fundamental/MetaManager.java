@@ -1,6 +1,7 @@
 package nameerror.skillbuilder.Fundamental;
 
 import nameerror.skillbuilder.Fundamental.ObjectManagement.FieldManager;
+import nameerror.skillbuilder.Fundamental.StatusEffect.StatusEffectManager;
 import nameerror.skillbuilder.Utils.MovementTrackingHandler;
 
 import java.util.ArrayList;
@@ -22,17 +23,22 @@ public class MetaManager {
 
     public static String op(String op, String manager) {
         if (op.equals("reset")) {
-            if (manager.equals("field")) {
-                FieldManager.clear();
-                return "Success";
-            }
+            switch (manager) {
+                case "field":
+                    FieldManager.clear();
+                    return "Success";
 
-            else if (manager.equals("movement_tracking")) {
-                MovementTrackingHandler.clear();
-                return "Success";
-            }
+                case "movement_tracking":
+                    MovementTrackingHandler.clear();
+                    return "Success";
 
-            return "Failed, no manager found";
+                case "status_effect":
+                    StatusEffectManager.clear();
+                    return "Success";
+
+                default:
+                    return "Failed, no manager found";
+            }
         }
 
         return "Failed, no operation found";
