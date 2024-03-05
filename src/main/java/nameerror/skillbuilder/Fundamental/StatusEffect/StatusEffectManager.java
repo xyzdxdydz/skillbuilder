@@ -1,7 +1,9 @@
 package nameerror.skillbuilder.Fundamental.StatusEffect;
 
+import nameerror.skillbuilder.Fundamental.StatusEffect.CrowdControl.CrowdControlManager;
 import org.bukkit.entity.Entity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -16,24 +18,42 @@ public class StatusEffectManager {
 
     }
 
-    public static HashSet<StatusEffect> getEffectStatus(Entity entity) {
-        return statusMap.get(entity);
-    }
-
-    public static void remove(Entity entity, StatusEffect statusEffect) {
+    public static void removeEffect(Entity entity, StatusEffect statusEffect) {
         statusMap.get(entity).remove(statusEffect);
     }
 
+    public static HashSet<StatusEffect> getStatusEffect(Entity entity) {
+        return statusMap.getOrDefault(entity, new HashSet<>());
+    }
+
     public static Runnable update() {
+
         for (HashMap.Entry<Entity, HashSet<StatusEffect>> entry : statusMap.entrySet()) {
             Entity entity = entry.getKey();
+            ArrayList<StatusEffect> expired = new ArrayList<>();
+
+            CrowdControlManager.cleanse(entity); // cleanse expired CC
+
             for (StatusEffect statusEffect : entry.getValue()) {
                 statusEffect.step();
                 if (statusEffect.isExpired()) {
-                    remove(entity, statusEffect);
+                    expired.add(statusEffect);
                 }
             }
+
+            for (StatusEffect statusEffect : expired) {
+                removeEffect(entity, statusEffect);
+            }
         }
+
         return null;
     }
+
+    public static void clear() {
+        statusMap.clear();
+        CrowdControlManager.clear();
+    }
+
+    // Crowd control handler
+
 }
