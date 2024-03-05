@@ -1,18 +1,27 @@
 package nameerror.skillbuilder.Fundamental.StatusEffect;
+import nameerror.skillbuilder.Fundamental.Triggers;
 import nameerror.skillbuilder.Fundamental.Matter;
 import nameerror.skillbuilder.Fundamental.ObjectManagement.LegacyEntity;
 
-public abstract class StatusEffect {
+public abstract class StatusEffect implements Triggers {
     /**
      * Definition: status effect that effect the entity and Matter
      *
      * there are 2 types of mechanism
      * 1. applied for some period
      * 2. Trigger-based (conditional)
+     *
+     * Limitation priority:
+     * 1. Only-one, no matter other entity inflict same name of status effect (can implement mutual stack)
+     * 2. Multiple, one for each applier
+     * 3.
+     * 4. Any
      */
-
-    private Matter applier;
     private LegacyEntity victim;
+
+    private String name; // tick
+    private Matter applier;
+    private int priority = 255; // 0 is highest
     private int duration; // tick
     private int interval; // tick
     private int level;
@@ -21,9 +30,10 @@ public abstract class StatusEffect {
     private int tickCounter = 0; // tick
     private boolean expired = false;
 
-    public StatusEffect(Matter applier, LegacyEntity victim, int ticks, int interval, int level, int stack) {
+    public StatusEffect(Matter applier, LegacyEntity victim, String name, int ticks, int interval, int level, int stack) {
         this.applier = applier;
         this.victim = victim;
+        this.name = name;
         this.duration = ticks;
         this.interval = interval;
         this.level = level;
@@ -38,8 +48,16 @@ public abstract class StatusEffect {
         return victim;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public double getDuration() {
         return duration;
+    }
+
+    public int getPriority() {
+        return priority;
     }
 
     public int getIntervalTicks() { return interval; }
@@ -68,6 +86,10 @@ public abstract class StatusEffect {
         this.duration = duration;
     }
 
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
     public void setIntervalTicks(int tick) {
         this.interval = tick;
     }
@@ -76,8 +98,11 @@ public abstract class StatusEffect {
         this.level = level;
     }
 
-    public void setStack(int stack) {
+    public void setStack(int stack, boolean triggerEvent) {
         this.stack = stack;
+        if (triggerEvent) {
+            onStackChange();
+        }
     }
 
     public void setExpired(boolean b) { this.expired = b; }
@@ -86,10 +111,12 @@ public abstract class StatusEffect {
         this.level += level;
     }
 
-    public void addStack(int stack) {
+    public void addStack(int stack, boolean triggerEvent) {
         this.stack += stack;
+        if (triggerEvent) {
+            onStackChange();
+        }
     }
-
 
     public void step() {
         if (victim.getEntity().isDead()) {
@@ -107,4 +134,6 @@ public abstract class StatusEffect {
     }
 
     public abstract void trigger();
+
+    public void onStackChange() { }
 }

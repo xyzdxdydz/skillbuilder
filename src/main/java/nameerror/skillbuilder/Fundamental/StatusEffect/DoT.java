@@ -11,8 +11,8 @@ public class DoT extends Debuff {
 
     private double baseDamage;
 
-    public DoT(Matter applier, LegacyEntity victim, int ticks, int interval, int level, int stack, double baseDamage) {
-        super(applier, victim, ticks, interval, level, stack);
+    public DoT(Matter applier, LegacyEntity victim, String name, int ticks, int interval, int level, int stack, double baseDamage) {
+        super(applier, victim, name, ticks, interval, level, stack);
         this.baseDamage = baseDamage;
     }
 
@@ -40,6 +40,11 @@ public class DoT extends Debuff {
             ((LivingEntity) entity).setNoDamageTicks(0);
             entity.getWorld().playSound(entity.getLocation(), Sound.ENTITY_WITHER_SHOOT, 2, 2);
         }
+    }
+
+    @Override
+    public void onStackChange() {
+
     }
 
 }
