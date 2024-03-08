@@ -1,5 +1,6 @@
 package nameerror.skillbuilder.Testing.TestFeature;
 
+import nameerror.skillbuilder.Animations.CustomParticle.FireworkParticle;
 import nameerror.skillbuilder.Animations.CustomParticle.ParticleDrawer;
 import nameerror.skillbuilder.Animations.CustomParticle.ParticleMaker;
 import nameerror.skillbuilder.Fundamental.ObjectManagement.Field;
@@ -7,17 +8,17 @@ import nameerror.skillbuilder.Fundamental.ObjectManagement.FieldManager;
 import nameerror.skillbuilder.Fundamental.ObjectManagement.LegacyEntity;
 import nameerror.skillbuilder.Fundamental.StatusEffect.CrowdControl.ControlType;
 import nameerror.skillbuilder.Fundamental.StatusEffect.CrowdControl.CrowdControl;
+import nameerror.skillbuilder.Fundamental.StatusEffect.Debuff;
 import nameerror.skillbuilder.Fundamental.StatusEffect.DoT;
 import nameerror.skillbuilder.Fundamental.StatusEffect.StatusEffectManager;
 import nameerror.skillbuilder.Math.SetSpace;
 import nameerror.skillbuilder.Math.Shape.Sphere;
 import nameerror.skillbuilder.Testing.TestModule;
-import org.bukkit.Color;
-import org.bukkit.Location;
-import org.bukkit.Particle;
+import org.bukkit.*;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class StatusEffectTest extends TestModule {
         this.addTestCase("cc_snare", this::CCSnarePlayerTest);
         this.addTestCase("cc_stun", this::CCStunPlayerTest);
         this.addTestCase("DoT_basic", this::basicDoT);
+        this.addTestCase("stack_to_trigger", this::stackTriggerTest);
     }
 
     private void drawCircle(Location location, double radius, Color color1, Color color2) {
@@ -121,6 +123,53 @@ public class StatusEffectTest extends TestModule {
         field.setApplyToEntities(true);
         FieldManager.register(field);
 
+        return 0;
+    }
+
+    private Integer stackTriggerTest(Player player) {
+        Sphere sphere = new Sphere(player.getLocation(), 5);
+        Player victim = getOnePlayer(player, sphere);
+
+        if (victim != null) {
+            Debuff subZero = new Debuff(LegacyEntity.get(player), LegacyEntity.get(victim),
+                    "Sub zero", 20 * 10, 1, 1, 1) {
+                @Override
+                public void trigger() { }
+
+                @Override
+                public void onVictimDamage(EntityDamageByEntityEvent event) {
+                    if (event.getEntity().equals(getVictim().getEntity())) {
+                        victim.sendMessage("More frozen");
+                        addStack(1, true);
+                    }
+                }
+
+                @Override
+                public void onStackChange() {
+                    getVictim().getEntity().setFreezeTicks(35 * getStack());
+                    victim.sendMessage("More frozen, Total: " + getStack());
+
+                    if (getStack() % 5 == 0) {
+                        Bukkit.broadcastMessage(ChatColor.AQUA + "Freeze for 5 secs (no sync).");
+//                        setStack(1, false);
+
+                        CrowdControl cc = new CrowdControl(getApplier(), getVictim(), "Frozen", 20 * 5, 1);
+                        ArrayList<ControlType> controlTypes = new ArrayList<>(Arrays.asList(ControlType.values()));
+                        cc.setControlProperties(controlTypes);
+
+                        FireworkParticle fireworkParticle = new FireworkParticle(
+                                FireworkEffect.Type.BURST,
+                                Color.AQUA,
+                                false, false);
+                        fireworkParticle.spawn(getVictim().getLocation());
+
+                        StatusEffectManager.applyEffect(getVictim().getEntity(), cc);
+                    }
+                }
+            };
+
+            StatusEffectManager.applyEffect(victim, subZero);
+        }
         return 0;
     }
 
