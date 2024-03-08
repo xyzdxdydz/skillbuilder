@@ -63,8 +63,8 @@ public class PlayerControl implements Listener {
     public void controlPlayerSneak(PlayerToggleSneakEvent event) {
         Player player = event.getPlayer();
         if (CrowdControlManager.entityContainsCC(player, ControlType.DISABLE_SNEAK)) {
-            player.setSneaking(false);
-//            event.setCancelled(true);
+//            player.setSneaking(false);
+            event.setCancelled(true);
         }
     }
 
