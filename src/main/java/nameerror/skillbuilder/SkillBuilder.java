@@ -7,9 +7,10 @@ import nameerror.skillbuilder.EventListener.SkillListener;
 import nameerror.skillbuilder.Fundamental.ObjectManagement.FieldManager;
 import nameerror.skillbuilder.Fundamental.StatusEffect.StatusEffectManager;
 import nameerror.skillbuilder.Testing.Test;
+import nameerror.skillbuilder.Utils.EventDispatcher;
+import nameerror.skillbuilder.Utils.EventLab;
 import nameerror.skillbuilder.Utils.MovementTrackingHandler;
-import nameerror.skillbuilder.Utils.Mugen;
-import nameerror.skillbuilder.Fundamental.StatusEffect.CrowControl.Snare;
+import nameerror.skillbuilder.Fundamental.StatusEffect.CrowdControl.PlayerControl;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -94,9 +95,10 @@ public final class SkillBuilder extends JavaPlugin {
     private void registerEvent() {
         PluginManager pm = getServer().getPluginManager();
         Bukkit.getServer().getPluginManager().registerEvents(new SkillListener(), this);
-        Bukkit.getServer().getPluginManager().registerEvents(new Mugen(), this);
-        Bukkit.getServer().getPluginManager().registerEvents(new Snare(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new EventDispatcher(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new PlayerControl(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new DisableParticleDamage(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new EventLab(), this);
     }
 
     private void registerHandler() {
