@@ -136,4 +136,6 @@ public abstract class StatusEffect implements Triggers {
     public abstract void trigger();
 
     public void onStackChange() { }
+
+    public void onExpired() { }
 }
