@@ -70,10 +70,12 @@ public class StatusEffectManager {
             for (HashMap.Entry<Entity, HashSet<StatusEffect>> entry : removeLater.entrySet()) {
                 removeEffect(entry.getKey(), entry.getValue());
             }
+            removeLater.clear();
 
             for (HashMap.Entry<Entity, HashSet<StatusEffect>> entry : addLater.entrySet()) {
                 applyEffect(entry.getKey(), entry.getValue());
             }
+            addLater.clear();
 
         } else {
             mapInUse = b;
