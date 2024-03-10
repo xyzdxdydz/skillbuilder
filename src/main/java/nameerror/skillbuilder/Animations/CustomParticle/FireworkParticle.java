@@ -8,7 +8,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 
 import java.lang.reflect.Field;
 
-public class FireworkParticle {
+public class FireworkParticle implements ColorizedParticle {
     private FireworkEffect.Type fireworkType;
     private Color color;
     private boolean trail;
@@ -21,6 +21,17 @@ public class FireworkParticle {
         this.flicker = flicker;
     }
 
+    @Override
+    public Color getColor() {
+        return this.color;
+    }
+
+    @Override
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    @Override
     public void spawn(Location location) {
         World world  = location.getWorld();
         FireworkEffect fwFx = FireworkEffect.builder().trail(trail).flicker(flicker).withColor(color).with(fireworkType).build();
