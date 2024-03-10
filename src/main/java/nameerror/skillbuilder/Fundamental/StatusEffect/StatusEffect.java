@@ -23,12 +23,26 @@ public abstract class StatusEffect implements Triggers {
     private Matter applier;
     private int priority = 255; // 0 is highest
     private int duration; // tick
+    private int offsets = 0; // tick
+    private int warmup = 0; // count to certain time before trigger
     private int interval; // tick
     private int level;
     private int stack;
 
     private int tickCounter = 0; // tick
     private boolean expired = false;
+
+    public StatusEffect(Matter applier, LegacyEntity victim, String name, int ticks, int offsets, int warmup, int interval, int level, int stack) {
+        this(applier, victim, name, ticks, offsets, interval, level, stack);
+        this.warmup = warmup;
+
+    }
+
+    public StatusEffect(Matter applier, LegacyEntity victim, String name, int ticks, int offsets, int interval, int level, int stack) {
+        this(applier, victim, name, ticks, interval, level, stack);
+        this.offsets = offsets;
+
+    }
 
     public StatusEffect(Matter applier, LegacyEntity victim, String name, int ticks, int interval, int level, int stack) {
         this.applier = applier;
@@ -123,8 +137,10 @@ public abstract class StatusEffect implements Triggers {
             expired = true;
         }
 
-        if (!isExpired() && tickCounter % interval == 0) {
-            trigger();
+        if (!isExpired() && (tickCounter + offsets) % interval == 0) {
+            if (tickCounter >= warmup) {
+                trigger();
+            }
         }
 
         this.tickCounter++;
