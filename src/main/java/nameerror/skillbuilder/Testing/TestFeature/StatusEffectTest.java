@@ -1,11 +1,11 @@
 package nameerror.skillbuilder.Testing.TestFeature;
 
-import nameerror.skillbuilder.Animations.CustomParticle.FireworkParticle;
+import nameerror.skillbuilder.Animations.CustomParticle.ParticleModule.FireworkParticle;
 import nameerror.skillbuilder.Animations.CustomParticle.ParticleDrawer;
 import nameerror.skillbuilder.Animations.CustomParticle.ParticleMaker;
-import nameerror.skillbuilder.Fundamental.ObjectManagement.Field;
-import nameerror.skillbuilder.Fundamental.ObjectManagement.FieldManager;
-import nameerror.skillbuilder.Fundamental.ObjectManagement.LegacyEntity;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Field.Field;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Field.FieldManager;
+import nameerror.skillbuilder.Fundamental.EntityPlus.LegacyEntity;
 import nameerror.skillbuilder.Fundamental.StatusEffect.CrowdControl.ControlType;
 import nameerror.skillbuilder.Fundamental.StatusEffect.CrowdControl.CrowdControl;
 import nameerror.skillbuilder.Fundamental.StatusEffect.Debuff;

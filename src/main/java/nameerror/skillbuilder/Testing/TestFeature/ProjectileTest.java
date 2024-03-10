@@ -1,7 +1,7 @@
 package nameerror.skillbuilder.Testing.TestFeature;
 
 import nameerror.skillbuilder.Animations.CustomParticle.ParticleMaker;
-import nameerror.skillbuilder.Fundamental.ObjectManagement.AoEProjectile;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Projectile.AoEProjectile;
 import nameerror.skillbuilder.Math.Shape.Sphere;
 import nameerror.skillbuilder.SkillBuilder;
 import nameerror.skillbuilder.Testing.TestModule;

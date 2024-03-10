@@ -1,7 +1,7 @@
 package nameerror.skillbuilder.Utils;
 
-import nameerror.skillbuilder.Fundamental.ObjectManagement.Field;
-import nameerror.skillbuilder.Fundamental.ObjectManagement.LegacyEntity;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Field.Field;
+import nameerror.skillbuilder.Fundamental.EntityPlus.LegacyEntity;
 import nameerror.skillbuilder.Math.SetSpace;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;

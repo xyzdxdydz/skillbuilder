@@ -1,6 +1,6 @@
 package nameerror.skillbuilder.Utils;
 
-import nameerror.skillbuilder.Fundamental.ObjectManagement.Field;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Field.Field;
 import nameerror.skillbuilder.Math.SetSpace;
 import org.bukkit.Location;
 import org.bukkit.block.Block;

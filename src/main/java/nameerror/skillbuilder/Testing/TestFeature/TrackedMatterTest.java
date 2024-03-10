@@ -1,6 +1,6 @@
 package nameerror.skillbuilder.Testing.TestFeature;
 
-import nameerror.skillbuilder.Fundamental.ObjectManagement.LegacyEntity;
+import nameerror.skillbuilder.Fundamental.EntityPlus.LegacyEntity;
 import nameerror.skillbuilder.Testing.TestModule;
 import nameerror.skillbuilder.Utils.MovementTrackingHandler;
 import nameerror.skillbuilder.Utils.TrackedMatter;

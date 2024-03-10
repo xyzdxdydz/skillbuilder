@@ -1,7 +1,7 @@
 package nameerror.skillbuilder.CustomEvents;
 
-import nameerror.skillbuilder.Fundamental.SBComponent;
-import nameerror.skillbuilder.Fundamental.SkillManagement.Skill;
+import nameerror.skillbuilder.OldCode.SBComponent;
+import nameerror.skillbuilder.OldCode.SkillManagement.Skill;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 

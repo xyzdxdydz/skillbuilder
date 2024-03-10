@@ -2,9 +2,9 @@ package nameerror.skillbuilder.Commands.subcommands;
 
 import nameerror.skillbuilder.Commands.CommandManager;
 import nameerror.skillbuilder.Commands.SubCommandManager;
-import nameerror.skillbuilder.Fundamental.PluginEntityType;
-import nameerror.skillbuilder.Fundamental.SBComponent;
-import nameerror.skillbuilder.Fundamental.SkillManagement.SkillManager;
+import nameerror.skillbuilder.OldCode.PluginEntityType;
+import nameerror.skillbuilder.OldCode.SBComponent;
+import nameerror.skillbuilder.OldCode.SkillManagement.SkillManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

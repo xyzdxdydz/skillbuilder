@@ -1,7 +1,7 @@
 package nameerror.skillbuilder.Fundamental.StatusEffect;
 
 import nameerror.skillbuilder.Fundamental.Matter;
-import nameerror.skillbuilder.Fundamental.ObjectManagement.LegacyEntity;
+import nameerror.skillbuilder.Fundamental.EntityPlus.LegacyEntity;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;

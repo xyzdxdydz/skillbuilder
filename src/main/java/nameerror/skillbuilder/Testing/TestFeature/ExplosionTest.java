@@ -1,7 +1,7 @@
 package nameerror.skillbuilder.Testing.TestFeature;
 
-import nameerror.skillbuilder.Animations.CustomParticle.FireworkParticle;
-import nameerror.skillbuilder.Fundamental.ObjectManagement.Explosion;
+import nameerror.skillbuilder.Animations.CustomParticle.ParticleModule.FireworkParticle;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Explosion.Explosion;
 import nameerror.skillbuilder.SkillBuilder;
 import nameerror.skillbuilder.Testing.Test;
 import nameerror.skillbuilder.Testing.TestModule;

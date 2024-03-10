@@ -1,8 +1,8 @@
 package nameerror.skillbuilder.Testing.TestFeature;
 
-import nameerror.skillbuilder.Fundamental.ObjectManagement.FieldManager;
-import nameerror.skillbuilder.Fundamental.ObjectManagement.InnateDomain;
-import nameerror.skillbuilder.Fundamental.ObjectManagement.SolidBarrier;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Field.FieldManager;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Domain.InnateDomain;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Building.SolidBarrier;
 import nameerror.skillbuilder.Math.Shape.Sphere;
 import nameerror.skillbuilder.Math.Shape.WholeWorld;
 import nameerror.skillbuilder.SkillBuilder;

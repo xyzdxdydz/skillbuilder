@@ -1,7 +1,7 @@
 package nameerror.skillbuilder.Testing.TestFeature;
 
 import nameerror.skillbuilder.Testing.TestModule;
-import nameerror.skillbuilder.Utils.DomainCreator;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Domain.DomainCreator;
 import org.bukkit.entity.Player;
 
 public class WorldManipulationTest extends TestModule {

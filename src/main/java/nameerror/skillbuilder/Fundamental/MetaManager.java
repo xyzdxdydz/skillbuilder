@@ -1,6 +1,6 @@
 package nameerror.skillbuilder.Fundamental;
 
-import nameerror.skillbuilder.Fundamental.ObjectManagement.FieldManager;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Field.FieldManager;
 import nameerror.skillbuilder.Fundamental.StatusEffect.StatusEffectManager;
 import nameerror.skillbuilder.Utils.MovementTrackingHandler;
 

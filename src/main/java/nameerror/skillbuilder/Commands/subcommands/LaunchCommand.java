@@ -2,10 +2,9 @@ package nameerror.skillbuilder.Commands.subcommands;
 
 import nameerror.skillbuilder.Commands.CommandManager;
 import nameerror.skillbuilder.Commands.SubCommandManager;
-import nameerror.skillbuilder.Fundamental.SkillManagement.SkillManager;
+import nameerror.skillbuilder.OldCode.SkillManagement.SkillManager;
 import nameerror.skillbuilder.Verbose;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;

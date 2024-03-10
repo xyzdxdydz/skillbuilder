@@ -4,11 +4,11 @@ import nameerror.skillbuilder.Commands.CommandManager;
 import nameerror.skillbuilder.Configuration.PluginConfiguration;
 import nameerror.skillbuilder.EventListener.DisableParticleDamage;
 import nameerror.skillbuilder.EventListener.SkillListener;
-import nameerror.skillbuilder.Fundamental.ObjectManagement.FieldManager;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Field.FieldManager;
 import nameerror.skillbuilder.Fundamental.StatusEffect.StatusEffectManager;
 import nameerror.skillbuilder.Testing.Test;
 import nameerror.skillbuilder.Utils.DevTools.StatusEffectChecker;
-import nameerror.skillbuilder.Utils.EventDispatcher;
+import nameerror.skillbuilder.Fundamental.EventDispatch;
 import nameerror.skillbuilder.Utils.EventLab;
 import nameerror.skillbuilder.Utils.MovementTrackingHandler;
 import nameerror.skillbuilder.Fundamental.StatusEffect.CrowdControl.PlayerControl;
@@ -96,7 +96,7 @@ public final class SkillBuilder extends JavaPlugin {
     private void registerEvent() {
         PluginManager pm = getServer().getPluginManager();
         Bukkit.getServer().getPluginManager().registerEvents(new SkillListener(), this);
-        Bukkit.getServer().getPluginManager().registerEvents(new EventDispatcher(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new EventDispatch(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new PlayerControl(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new DisableParticleDamage(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new StatusEffectChecker(), this);

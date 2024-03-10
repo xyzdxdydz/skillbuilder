@@ -1,6 +1,6 @@
 package nameerror.skillbuilder.Testing.TestFeature;
 
-import nameerror.skillbuilder.Fundamental.ObjectManagement.SolidBarrier;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Building.SolidBarrier;
 import nameerror.skillbuilder.Math.Shape.Sphere;
 import nameerror.skillbuilder.SkillBuilder;
 import nameerror.skillbuilder.Testing.TestModule;

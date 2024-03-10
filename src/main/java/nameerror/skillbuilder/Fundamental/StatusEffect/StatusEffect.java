@@ -1,7 +1,7 @@
 package nameerror.skillbuilder.Fundamental.StatusEffect;
 import nameerror.skillbuilder.Fundamental.Triggers;
 import nameerror.skillbuilder.Fundamental.Matter;
-import nameerror.skillbuilder.Fundamental.ObjectManagement.LegacyEntity;
+import nameerror.skillbuilder.Fundamental.EntityPlus.LegacyEntity;
 
 public abstract class StatusEffect implements Triggers {
     /**

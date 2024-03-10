@@ -1,7 +1,7 @@
 package nameerror.skillbuilder.Fundamental.StatusEffect.CrowdControl;
 
 import nameerror.skillbuilder.Fundamental.Matter;
-import nameerror.skillbuilder.Fundamental.ObjectManagement.LegacyEntity;
+import nameerror.skillbuilder.Fundamental.EntityPlus.LegacyEntity;
 import nameerror.skillbuilder.Fundamental.StatusEffect.Debuff;
 
 import java.util.ArrayList;

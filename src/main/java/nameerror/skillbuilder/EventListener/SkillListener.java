@@ -1,7 +1,7 @@
 package nameerror.skillbuilder.EventListener;
 
 import nameerror.skillbuilder.CustomEvents.SkillLaunchEvent;
-import nameerror.skillbuilder.Fundamental.PluginEntityType;
+import nameerror.skillbuilder.OldCode.PluginEntityType;
 import nameerror.skillbuilder.Verbose;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

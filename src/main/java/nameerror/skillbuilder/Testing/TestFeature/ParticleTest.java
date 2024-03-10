@@ -1,6 +1,6 @@
 package nameerror.skillbuilder.Testing.TestFeature;
 
-import nameerror.skillbuilder.Animations.CustomParticle.FireworkParticle;
+import nameerror.skillbuilder.Animations.CustomParticle.ParticleModule.FireworkParticle;
 import nameerror.skillbuilder.Animations.CustomParticle.ParticleDrawer;
 import nameerror.skillbuilder.Animations.CustomParticle.ParticleMaker;
 import nameerror.skillbuilder.Testing.TestModule;

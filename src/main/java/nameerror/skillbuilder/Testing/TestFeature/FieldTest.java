@@ -1,7 +1,7 @@
 package nameerror.skillbuilder.Testing.TestFeature;
 
-import nameerror.skillbuilder.Fundamental.ObjectManagement.FieldManager;
-import nameerror.skillbuilder.Fundamental.ObjectManagement.LegacyEntity;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Field.FieldManager;
+import nameerror.skillbuilder.Fundamental.EntityPlus.LegacyEntity;
 import nameerror.skillbuilder.Math.Shape.Sphere;
 import nameerror.skillbuilder.Testing.TestModule;
 import nameerror.skillbuilder.Utils.*;
