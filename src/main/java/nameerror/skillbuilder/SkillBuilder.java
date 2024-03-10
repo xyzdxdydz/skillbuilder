@@ -7,6 +7,7 @@ import nameerror.skillbuilder.EventListener.SkillListener;
 import nameerror.skillbuilder.Fundamental.ObjectManagement.FieldManager;
 import nameerror.skillbuilder.Fundamental.StatusEffect.StatusEffectManager;
 import nameerror.skillbuilder.Testing.Test;
+import nameerror.skillbuilder.Utils.DevTools.StatusEffectChecker;
 import nameerror.skillbuilder.Utils.EventDispatcher;
 import nameerror.skillbuilder.Utils.EventLab;
 import nameerror.skillbuilder.Utils.MovementTrackingHandler;
@@ -98,6 +99,7 @@ public final class SkillBuilder extends JavaPlugin {
         Bukkit.getServer().getPluginManager().registerEvents(new EventDispatcher(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new PlayerControl(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new DisableParticleDamage(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new StatusEffectChecker(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new EventLab(), this);
     }
 
