@@ -1,10 +1,11 @@
 package nameerror.skillbuilder.Fundamental.ObjectManagement.Projectile;
 
-import nameerror.skillbuilder.Fundamental.ObjectManagement.Projectile.SBProjectile;
 import nameerror.skillbuilder.Math.SetSpace;
 import org.bukkit.Location;
+import org.bukkit.projectiles.ProjectileSource;
 
 public abstract class AoEProjectile extends SBProjectile {
+    private ProjectileSource shooter = null;
     private SetSpace setSpace;
 
     public AoEProjectile(SetSpace setSpace) {
@@ -18,6 +19,16 @@ public abstract class AoEProjectile extends SBProjectile {
 
     public void setSetSpace(SetSpace setSpace) {
         this.setSpace = setSpace;
+    }
+
+    @Override
+    public ProjectileSource getShooter() {
+        return shooter;
+    }
+
+    @Override
+    public void setShooter(ProjectileSource source) {
+        this.shooter = source;
     }
 
     @Override
