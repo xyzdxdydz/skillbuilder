@@ -2,12 +2,13 @@ package nameerror.skillbuilder.EventListener;
 
 import org.bukkit.entity.Firework;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 public class DisableParticleDamage implements Listener {
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onEntityDamageByFireWork(EntityDamageByEntityEvent event) {
         if (event.getDamager() instanceof Firework) {
             Firework fw = (Firework) event.getDamager();

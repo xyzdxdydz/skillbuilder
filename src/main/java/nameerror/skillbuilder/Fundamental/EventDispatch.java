@@ -11,7 +11,8 @@ public class EventDispatch implements Listener {
     // TODO; complete this and integrate to other i.e. field, etc.
     @EventHandler
     public void dispatchEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
-        StatusEffectManager.executeOneEntity(event.getEntity(), se -> se.onVictimDamage(event));
+        if (!event.isCancelled()) {
+            StatusEffectManager.executeOneEntity(event.getEntity(), se -> se.onVictimDamage(event));
+        }
     }
-
 }
