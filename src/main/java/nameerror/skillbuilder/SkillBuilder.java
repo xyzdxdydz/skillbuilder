@@ -5,6 +5,8 @@ import nameerror.skillbuilder.Configuration.PluginConfiguration;
 import nameerror.skillbuilder.EventListener.DisableParticleDamage;
 import nameerror.skillbuilder.EventListener.SkillListener;
 import nameerror.skillbuilder.Fundamental.ObjectManagement.Field.FieldManager;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Projectile.ProjectileEventDispatch;
+import nameerror.skillbuilder.Fundamental.ObjectManagement.Projectile.ProjectileManager;
 import nameerror.skillbuilder.Fundamental.StatusEffect.StatusEffectManager;
 import nameerror.skillbuilder.Testing.Test;
 import nameerror.skillbuilder.Utils.DevTools.StatusEffectChecker;
@@ -97,6 +99,7 @@ public final class SkillBuilder extends JavaPlugin {
         PluginManager pm = getServer().getPluginManager();
         Bukkit.getServer().getPluginManager().registerEvents(new SkillListener(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new EventDispatch(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new ProjectileEventDispatch(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new PlayerControl(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new DisableParticleDamage(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new StatusEffectChecker(), this);
@@ -107,6 +110,7 @@ public final class SkillBuilder extends JavaPlugin {
         getServer().getScheduler().runTaskTimer(this, MovementTrackingHandler::update, 0, 1);
         getServer().getScheduler().runTaskTimer(this, FieldManager::update, 0, 1);
         getServer().getScheduler().runTaskTimer(this, StatusEffectManager::update, 0, 1);
+        getServer().getScheduler().runTaskTimer(this, ProjectileManager::update, 0, 1);
     }
 
     public PluginConfiguration getConfigDatabase(String name) {
